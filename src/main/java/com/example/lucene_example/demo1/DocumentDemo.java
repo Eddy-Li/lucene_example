@@ -28,6 +28,14 @@ public class DocumentDemo {
     //删除文档
     @Test
     public void test4() {
+        //删除所有文档
+        //indexWriter.deleteAll();
+
+        //删除字段name有关键词term的文档
+        //indexWriter.deleteDocuments(new Term("name","term"));
+
+        //删除查询条件Query1 Query2查询到的文档
+        //indexWriter.deleteDocuments(Query1,Query2);
 
     }
 }
