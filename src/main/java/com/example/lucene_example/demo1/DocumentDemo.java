@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class DocumentDemo {
 
-    //增加文档
+    //增加文档(可以选择字段是否创建索引)
     @Test
     public void test1() throws IOException {
         //Document doc1 = new Document();
@@ -25,7 +25,7 @@ public class DocumentDemo {
         //Document document = indexSearcher.doc(docId);
     }
 
-    //删除文档
+    //删除文档（同时会删除索引）
     @Test
     public void test4() {
         //删除所有文档
