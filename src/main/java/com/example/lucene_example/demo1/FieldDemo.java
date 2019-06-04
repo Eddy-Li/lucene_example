@@ -2,7 +2,6 @@ package com.example.lucene_example.demo1;
 
 import org.apache.lucene.document.*;
 import org.apache.lucene.index.IndexOptions;
-import org.apache.lucene.index.PointValues;
 import org.apache.lucene.search.Query;
 
 public class FieldDemo {
