@@ -36,6 +36,18 @@ public class DocumentDemo {
 
         //删除查询条件Query1 Query2查询到的文档
         //indexWriter.deleteDocuments(Query1,Query2);
+    }
+
+    //更新文档（索引）：先删除，后创建
+    @Test
+    public void test5() {
+        //先删除查询条件为Term的文档，然后创建新的文档(删除一些文档，创建一个文档)
+        //如果是指定id的文档，可以将Term的字段name设置为文档id名,值为文档id值（这时是删除一个文档，创建一个文档）
+        //indexWriter.updateDocument(new Term("name", "term"), new Document());
+
+
+        //删除一些文档，创建一些文档
+        //indexWriter.updateDocuments(new Term("name", "term"), Arrays.asList(new Document()));
 
     }
 }

@@ -13,6 +13,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 public class IndexWriterDemo {
 
@@ -56,6 +57,7 @@ public class IndexWriterDemo {
         indexWriter.commit();
 
         indexWriter.close();
+
     }
 
 
