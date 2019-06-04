@@ -46,7 +46,7 @@ public class DocumentDemo {
         //indexWriter.updateDocument(new Term("name", "term"), new Document());
 
 
-        //删除一些文档，创建一些文档
+        //删除一些文档，创建一些文档,用于批量更新
         //indexWriter.updateDocuments(new Term("name", "term"), Arrays.asList(new Document()));
 
     }
