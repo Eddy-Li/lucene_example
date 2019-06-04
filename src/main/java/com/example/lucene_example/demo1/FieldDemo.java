@@ -6,7 +6,7 @@ import org.apache.lucene.search.Query;
 
 public class FieldDemo {
     public static void main(String[] args) {
-        Document doc1 = new Document();
+        DocumentDemo doc1 = new DocumentDemo();
 
         String name = "name";
         String value = "value";

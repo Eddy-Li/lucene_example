@@ -27,7 +27,7 @@ public class IndexWriterDemo {
         IndexWriterConfig conf = new IndexWriterConfig(analyzer);
         //IndexWriter
         IndexWriter indexWriter = new IndexWriter(directory, conf);
-        //Document
+        //DocumentDemo
         Document doc1 = new Document();
         doc1.add(new TextField("id", "0001", Field.Store.YES));
         doc1.add(new TextField("title", "java", Field.Store.YES));
