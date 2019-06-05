@@ -13,7 +13,7 @@ import java.io.IOException;
 //如果在使用中出现错误
 //java.lang.AssertionError: TokenStream implementation classes or at least their incrementToken() implementation must be final
 //那么为IKTokenizer6x class 加入final关键字
-public class IKTokenizer6x extends Tokenizer {
+public final class IKTokenizer6x extends Tokenizer {
     // IK分词器实现
     private IKSegmenter _IKImplement;
     // 词元文本属性
