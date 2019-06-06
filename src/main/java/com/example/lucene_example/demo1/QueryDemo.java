@@ -174,6 +174,30 @@ public class QueryDemo {
     //在FuzzyQuery中，默认的匹配度是0.5，当这个值越小时，通过模糊查找出的文档的匹配程度就越低，查出的文档量就越多,反之亦然.
     //模糊搜索的三种构造函数，具体讲一下参数的用法（以第三个为例）；
     //第一个参数当然是词条对象，第二个参数指的是levenshtein算法的最小相似度，第三个参数指的是要有多少个前缀字母完全匹配：
+    @Test
+    public void test8() throws IOException {
+        //Directory
+        Directory directory = FSDirectory.open(Paths.get(PATH));
+        //IndexReader
+        IndexReader indexReader = DirectoryReader.open(directory);
+        //IndexSearcher
+        IndexSearcher indexSearcher = new IndexSearcher(indexReader);
+
+        FuzzyQuery fuzzyQuery = new FuzzyQuery(new Term("content", "莫斯可"));//可以搜索到"莫斯科"
+
+        TopDocs topDocs = indexSearcher.search(fuzzyQuery, 10);
+        System.out.println("总命中数:" + topDocs.totalHits);
+        ScoreDoc[] scoreDocs = topDocs.scoreDocs;//命中的记录数组
+        for (ScoreDoc scoreDoc : scoreDocs) {
+            int docId = scoreDoc.doc;//命中的文档id
+            System.out.println(docId);
+            //获取文档,如果创建索引时Field.Store.NO，即不存储，此时就会获取不到文档的数据，下面全部会显示为空
+            Document document = indexSearcher.doc(docId);
+            System.out.println(document.get("id"));
+            System.out.println(document.get("content"));
+            System.out.println("=======================================================");
+        }
+    }
 
     //9.BooleanQuery:组合查询（布尔查询）
     @Test
