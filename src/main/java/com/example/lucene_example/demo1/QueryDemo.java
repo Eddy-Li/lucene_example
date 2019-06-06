@@ -209,7 +209,6 @@ public class QueryDemo {
         //IndexSearcher
         IndexSearcher indexSearcher = new IndexSearcher(indexReader);
 
-
         TermQuery termQuery1 = new TermQuery(new Term("content", "莫斯科"));
         TermQuery termQuery2 = new TermQuery(new Term("content", "习近平"));
 
@@ -231,5 +230,7 @@ public class QueryDemo {
             System.out.println("=======================================================");
         }
     }
+
+    //10.TermRangeQuery:字符串的范围搜索,TermRangeQuery无法查询数字的结果
 
 }
