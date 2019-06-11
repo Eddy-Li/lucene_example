@@ -8,12 +8,10 @@ import org.apache.lucene.document.Field;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
-import org.apache.lucene.index.Term;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 public class IndexWriterDemo {
 
@@ -53,6 +51,10 @@ public class IndexWriterDemo {
         doc4.add(new TextField("title", "ikAdapter", Field.Store.YES));
         doc4.add(new TextField("content", "我们是中国人,我们家在中国", Field.Store.YES));
         indexWriter.addDocument(doc4);
+
+        //Merge
+        //indexWriter.forceMerge(...);
+        //indexWriter.forceMergeDeletes();
 
         indexWriter.commit();
 
