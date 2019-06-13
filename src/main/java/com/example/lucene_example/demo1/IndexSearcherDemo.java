@@ -53,5 +53,7 @@ public class IndexSearcherDemo {
             System.out.println(document.get("content"));
             System.out.println("=======================================================");
         }
+
+        indexReader.close();
     }
 }
