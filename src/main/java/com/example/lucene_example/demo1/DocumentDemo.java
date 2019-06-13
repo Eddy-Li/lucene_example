@@ -1,5 +1,8 @@
 package com.example.lucene_example.demo1;
 
+import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.document.TextField;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -9,7 +12,9 @@ public class DocumentDemo {
     //增加文档(可以选择字段是否创建索引)
     @Test
     public void test1() throws IOException {
-        //Document doc1 = new Document();
+        Document doc1 = new Document();
+        TextField textField = new TextField("content", "hello java world", Field.Store.YES);
+        doc1.add(textField);
         //indexWriter.addDocument(doc1);
     }
 
