@@ -76,7 +76,7 @@ public class QueryDemo {
         Analyzer analyzer = new IKAnalyzer6x(true);
         QueryParser queryParser = new QueryParser(defaultField, analyzer);
         //默认为Operator.OR
-        queryParser.setDefaultOperator(QueryParser.Operator.OR);
+        queryParser.setDefaultOperator(QueryParser.Operator.AND);
 
         //如果这里没有指定搜索字段(搜索字段:关键词，例如content:scala)，则会使用默认搜索字段即上面的defaultField
         //Operator.OR（默认）时：只要有"俄罗斯"或者"莫斯科"就满足查询条件
