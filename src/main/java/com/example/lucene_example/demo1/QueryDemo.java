@@ -1,6 +1,7 @@
 package com.example.lucene_example.demo1;
 
 import com.example.lucene_example.ikAdapter.IKAnalyzer6x;
+import org.apache.commons.io.FileUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -14,6 +15,7 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.junit.Test;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 
@@ -23,6 +25,9 @@ public class QueryDemo {
 
     @Test
     public void test1() throws IOException {
+        FileUtils.deleteDirectory(new File(PATH));
+        FileUtils.forceMkdir(new File(PATH));
+
         //Directory
         Directory directory = FSDirectory.open(Paths.get(PATH));
         //Analyzer,使用自己重写IKAnalyzer6x,true:粗粒度分词, false:细粒度分词
@@ -34,7 +39,7 @@ public class QueryDemo {
         //DocumentDemo
         Document doc1 = new Document();
         doc1.add(new TextField("id", "0001", Field.Store.YES));
-        doc1.add(new TextField("content", "习近平用三“好”道出中俄深厚友谊 友谊之路", Field.Store.YES));
+        doc1.add(new TextField("content", "习近平用三“好”道出俄罗斯深厚友谊 友谊之路", Field.Store.YES));
         indexWriter.addDocument(doc1);
 
         Document doc2 = new Document();
@@ -55,7 +60,7 @@ public class QueryDemo {
 
     //1.MatchAllDocQuery:匹配所有文档
 
-    //2.QueryParser: 先分词再查询，字段中只要有一个分词字就满足查询条件
+    //2.QueryParser: 先分词再查询，默认为Operator.OR，字段中只要有一个分词字就满足查询条件，可以设置为Operator.AND
     @Test
     public void test2() throws IOException, ParseException {
         //Directory
@@ -70,9 +75,13 @@ public class QueryDemo {
         //Analyzer
         Analyzer analyzer = new IKAnalyzer6x(true);
         QueryParser queryParser = new QueryParser(defaultField, analyzer);
+        //默认为Operator.OR
+        queryParser.setDefaultOperator(QueryParser.Operator.OR);
 
         //如果这里没有指定搜索字段(搜索字段:关键词，例如content:scala)，则会使用默认搜索字段即上面的defaultField
-        String queryStr = "俄罗斯上海"; //只要有"俄罗斯"或者"上海"就满足查询条件
+        //Operator.OR（默认）时：只要有"俄罗斯"或者"莫斯科"就满足查询条件
+        //Operator.AND时："俄罗斯"、"莫斯科"都有时才满足查询条件
+        String queryStr = "俄罗斯莫斯科";
         Query query = queryParser.parse(queryStr);
 
         TopDocs topDocs = indexSearcher.search(query, 10);
