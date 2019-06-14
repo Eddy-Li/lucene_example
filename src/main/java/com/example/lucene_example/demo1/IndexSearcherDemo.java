@@ -55,5 +55,6 @@ public class IndexSearcherDemo {
         }
 
         indexReader.close();
+
     }
 }
