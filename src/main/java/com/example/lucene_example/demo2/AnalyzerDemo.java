@@ -22,7 +22,7 @@ public class AnalyzerDemo {
         SimpleAnalyzer simpleAnalyzer = new SimpleAnalyzer();
         displayToken(str,simpleAnalyzer);
         IKAnalyzer6x analyzer6x = new IKAnalyzer6x(true);
-        displayToken(str,analyzer6x);
+        displayToken("从中亚之行的三句古语看习近平的外交理念",analyzer6x);
     }
 
     private void displayToken(String content, Analyzer analyzer) throws IOException {
