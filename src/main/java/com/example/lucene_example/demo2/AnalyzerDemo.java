@@ -13,6 +13,9 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.StringReader;
 
+//Analyzer:包含Tokenizer和TokenFilter
+//Tokenizer用来根据某种规则分词
+//TokenFilter用来根据某种规则做大小写转换、复数转单数、去掉停止词等
 public class AnalyzerDemo {
 
 
