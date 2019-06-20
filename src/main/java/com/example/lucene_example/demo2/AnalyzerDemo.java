@@ -18,7 +18,6 @@ import java.io.StringReader;
 //TokenFilter用来根据某种规则做大小写转换、复数转单数、去掉停止词等
 public class AnalyzerDemo {
 
-
     @Test
     public void test1() throws IOException {
         String str = "This is my house,I'm coming from JiangSu";
@@ -47,6 +46,7 @@ public class AnalyzerDemo {
         }
         System.out.print("\n");
         tokenStream.close();
+
     }
 
 
