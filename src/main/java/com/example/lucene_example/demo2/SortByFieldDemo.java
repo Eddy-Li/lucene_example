@@ -47,7 +47,6 @@ public class SortByFieldDemo {
             //字段是Long时用NumericDocValuesField，Double时DoubleDocValuesField，Float时FloatDocValuesField
             doc.add(new NumericDocValuesField("title", i));
 
-
             doc.add(new StringField("tag", tags[i], Field.Store.YES));
             //字段是String时，是SortedDocValuesField
             doc.add(new SortedDocValuesField("tag", new BytesRef(tags[i])));
@@ -74,6 +73,12 @@ public class SortByFieldDemo {
 
         TermQuery query = new TermQuery(new Term("content", "java"));
 
+        //Sort sort = Sort.INDEXORDER:通过文档的id排序
+        //Sort sort = Sort.RELEVANCE:通过文档的评分排序,默认按照这个排序
+
+        //SortField sortField = SortField.FIELD_DOC; //order by document number
+        //SortField sortField = SortField.FIELD_SCORE; //order by document score
+
         SortField sortField1 = new SortField("tag", SortField.Type.STRING, false);
         SortField sortField2 = new SortField("title", SortField.Type.LONG, false);
         //先按sortField1排序，然后再按sortField2排序
@@ -92,7 +97,6 @@ public class SortByFieldDemo {
             System.out.println(document.get("content"));
             System.out.println("=======================================================");
         }
-
         indexReader.close();
     }
 
