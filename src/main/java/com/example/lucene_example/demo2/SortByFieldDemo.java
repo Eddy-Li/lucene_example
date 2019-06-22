@@ -15,7 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-public class SortByNumberFieldDemo {
+public class SortByFieldDemo {
     //索引存放目录
     private static final String PATH = "D:\\examples\\lucene";
 
