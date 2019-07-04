@@ -10,21 +10,28 @@ import java.io.IOException;
 
 public class MyCustScoreQuery extends CustomScoreQuery {
 
-    public MyCustScoreQuery(Query subQuery) {
+    private String field;
+
+    public MyCustScoreQuery(Query subQuery, String field) {
+        this(subQuery);
+        this.field = field;
+    }
+
+    private MyCustScoreQuery(Query subQuery) {
         super(subQuery);
     }
 
-    public MyCustScoreQuery(Query subQuery, FunctionQuery scoringQuery) {
+    private MyCustScoreQuery(Query subQuery, FunctionQuery scoringQuery) {
         super(subQuery, scoringQuery);
     }
 
-    public MyCustScoreQuery(Query subQuery, FunctionQuery... scoringQueries) {
+    private MyCustScoreQuery(Query subQuery, FunctionQuery... scoringQueries) {
         super(subQuery, scoringQueries);
     }
 
 
     @Override
     protected CustomScoreProvider getCustomScoreProvider(LeafReaderContext context) throws IOException {
-        return super.getCustomScoreProvider(context);
+        return new MyCustomScoreProvider(context, field);
     }
 }
