@@ -22,6 +22,7 @@ public class MyCustomScoreProvider extends CustomScoreProvider {
 //        return super.customScore(doc, subQueryScore, valSrcScores);
 //    }
 
+
     @Override
     public float customScore(int doc, float subQueryScore, float valSrcScore) throws IOException {
         LeafReader reader = this.context.reader();
