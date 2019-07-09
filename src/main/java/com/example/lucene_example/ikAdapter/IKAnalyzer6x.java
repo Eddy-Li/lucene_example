@@ -28,6 +28,7 @@ public class IKAnalyzer6x extends Analyzer {
     }
 
     // IK分词器Lucene Analyzer接口实现类;当为true时，分词器进行智能切分
+    //true:粗粒度分词, false:细粒度分词
     public IKAnalyzer6x(boolean useSmart) {
         super();
         this.useSmart = useSmart;
