@@ -1,0 +1,49 @@
+一、创建类型(也叫映射)
+	方法1：创建索引时同事创建映射，参考索引操作
+	
+	方法2：创建索引后新增映射
+		PUT http://localhost:9200/索引名称/_mapping/mappingName
+		{
+			"properties":{
+				"field1":{
+					"type":"string",
+					"index":"not_analyzed"
+				},
+				"field2":{
+					"type":"string",
+					"index":"not_analyzed"
+				},
+				...
+			}
+		}
+
+二：更新类型
+	1.索引文档都存在，增加字段
+		PUT http://localhost:9200/索引名称/_mapping/mappingName
+		{
+			"properties":{
+				#要增加的字段(如果原来有这个字段，则更新这个字段)
+				"field1":{
+					"type":"string",
+					"index":"not_analyzed"
+				},
+				#要增加的字段
+				"field2":{
+					"type":"string",
+					"index":"not_analyzed"
+				},
+				...
+			}
+		}	
+
+三、获得类型
+	#获得索引的类型信息
+	GET http://localhost:9200/索引名称/_mappings
+	#获得索引的某一个类型信息
+	GET http://localhost:9200/索引名称/_mapping/mappingName
+	#某一个索引
+	GET http://localhost:9200/索引名称/_mapping/mappingName1,mappingName2
+	#所有索引
+	GET http://localhost:9200/_all/_mapping/mappingName1,mappingName2
+	#指定的一些索引
+	GET http://localhost:9200/indexName1,indexName2/_mapping/mappingName1,mappingName2

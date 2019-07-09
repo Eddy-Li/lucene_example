@@ -1,0 +1,11 @@
+POST _analyze
+{
+  "analyzer": "ik_max_word",
+  "text": "查询操作会根据查询的结果进行相关性分值计算"
+}
+
+POST _analyze
+{
+  "analyzer": "ik_smart",
+  "text": "查询操作会根据查询的结果进行相关性分值计算"
+}

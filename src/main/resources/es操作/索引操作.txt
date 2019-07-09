@@ -1,0 +1,87 @@
+一.创建索引
+	PUT http://localhost:9200/索引名称
+	{
+		#索引设置
+		"settings":{
+			#"index"：{}可以省略简写，如下面
+			"index":{
+				"number_of_shards":3,
+				"number_of_replicas":2
+			}
+		},
+		#类型设置
+		"mappings":{
+			
+		}
+		
+	}
+	#或"index"省略简写
+	PUT http://localhost:9200/索引名称
+		{
+			#索引设置
+			"settings":{
+				"number_of_shards":3,
+				"number_of_replicas":2
+			},
+			#类型设置
+			"mappings":{
+				"mappingname":{
+					#禁用_source字段，即所有字段禁止存储
+					"_source": {"enabled": false},
+					"properties":{
+						"field1":{
+							"type":"string",
+							"index":"not_analyzed"
+						},
+						"field2":{
+							#字段类型
+							"type":"string",
+							
+							#该字段是否创建索引
+							#一种版本：true/false，
+							#一种版本：no(不创建索引)、not_analyzed(索引不分词)、analyzed(索引并分词)
+							"index":true,
+							
+							#分词器(ik_max_word/ik_smart)
+							"analyzer":"standard",
+							
+							#搜索分词器
+							"search_analyzer":"",
+							
+							#该字段是否被存储(是否可以显示)(true/false)
+							"store": true，
+							
+							#权重
+							"boost": 10，
+							
+							#是否包含在_all字段中，当“index”为true时默认值为true，否则为false
+							include_in_all:
+						},
+						...
+					}
+				}
+			}
+			
+		}
+	
+
+二.修改索引
+
+
+三.删除索引
+	DELETE http://localhost:9200/索引名称
+
+四.获取索引
+	#获得索引的所有信息
+	GET http://localhost:9200/索引名称
+	#获得索引的配置信息
+	GET http://localhost:9200/索引名称/_settings
+	#获得索引的类型信息
+	GET http://localhost:9200/索引名称/_mappings
+
+五.打开、关闭索引
+	POST http://localhost:9200/索引名称/_open
+	POST http://localhost:9200/索引名称/_close
+	打开、关闭所有索引
+	POST http://localhost:9200/_all/_open
+	POST http://localhost:9200/_all/_close

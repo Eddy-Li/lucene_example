@@ -1,0 +1,43 @@
+一、查询所有文档数据
+	GET http://localhost:9200/索引名称/类型名称/_search
+
+二、批量查询	
+	GET http://localhost:9200/索引名称/类型名称/_mget
+	{	
+		#要查询的文档的id数组
+		"ids":["001","003"]
+	}
+
+三、
+POST test/student/_search
+{
+  "query": {
+    "term": {
+      "name":"candy"
+    }
+  },
+  
+  #排序，数组内可以设置多个字段
+  "sort": [
+    {
+      "age": {
+        "order": "desc"，
+		#当一个字段内有多个数值时，可以按字段内的min、max、sum、avg排序
+		 "mode": "avg"
+      }
+    }
+  ],
+  
+  #分页，size大小不能超过index.max_result_window设置值，默认为10000
+  "from": 0,
+  "size": 3,
+  
+  #过滤，默认true，即是否显示文档的所有字段
+  "_source": false
+  #或者如下：includes包含显示哪些字段，excludes排除哪些字段
+  #"_source": {
+  #  "includes": ["id","name"],
+  #  "excludes": ["age"]
+  #}
+  
+}

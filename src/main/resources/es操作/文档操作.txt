@@ -1,0 +1,52 @@
+一.新增文档
+	新建方法1：有id（自己设计id）
+		PUT http://localhost:9200/索引名称/类型名称/文档id
+		{
+			#json格式数据
+			"name":"candy"，
+			"age":18
+		}
+	新建方法2：没有id（es自动生成id）
+		POST http://localhost:9200/索引名称/类型名称
+		{
+			#json格式数据
+			"name":"candy"，
+			"age":18
+		}
+
+二.更新文档
+	更新方法1：更新部分字段,或者增加字段
+		#要有_update
+		#此方法比下面两个更新方法好
+		#es使用乐观锁，更新时可能会有并发问题可以加上参数retry_on_conflict,
+		#POST http://localhost:9200/索引名称/类型名称/文档id/_update?retry_on_conflict=3
+		POST http://localhost:9200/索引名称/类型名称/文档id/_update
+		{
+			#亚欧"doc"
+			"doc":{
+				#要更新的字段,如下将name字段更新为eddy,age字段更新为20,增加一个addr字段
+				"name":"eddy"，
+				"age":20，
+				"addr":"XH"
+			}
+		}
+	更新方法2：删除原来的那个id文档，新建一个新的文档
+		PUT http://localhost:9200/索引名称/类型名称/文档id
+		{
+			#json格式数据
+			"name":"candy"，
+			"age":18
+		}
+	更新方法3：删除原来的那个id文档，新建一个新的文档
+		POST http://localhost:9200/索引名称/类型名称/文档id
+		{
+			#json格式数据
+			"name":"candy"，
+			"age":18
+		}
+
+三.删除文档
+	DELETE http://localhost:9200/索引名称/类型名称/文档id
+
+四.获得文档
+	GET http://localhost:9200/索引名称/类型名称/文档id
