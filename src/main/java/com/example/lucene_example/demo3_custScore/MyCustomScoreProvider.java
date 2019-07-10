@@ -18,7 +18,8 @@ public class MyCustomScoreProvider extends CustomScoreProvider {
         LeafReader reader = this.context.reader();
         NumericDocValues numericDocValues = reader.getNumericDocValues("_click_num");
         long clickNum = numericDocValues.get(doc);
-//        double factor = Math.log()
+        double factor = Math.log(clickNum + 1) + 1;
+//        return super.customScore(doc, subQueryScore, valSrcScore) * factor;
         return super.customScore(doc, subQueryScore, valSrcScore) * (clickNum + 1);
     }
 }

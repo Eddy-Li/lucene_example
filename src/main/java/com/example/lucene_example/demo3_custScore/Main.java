@@ -48,6 +48,7 @@ public class Main {
         doc1.add(new TextField("id", "0001", Field.Store.YES));
         doc1.add(new TextField("title", "java", Field.Store.YES));
         doc1.add(new TextField("content", "hello java world", Field.Store.YES));//0.3472057 0.6944114
+        //_click_num要为NumericDocValuesField字段
         doc1.add(new NumericDocValuesField("_click_num", 1));
         indexWriter.addDocument(doc1);
 
@@ -112,6 +113,16 @@ public class Main {
         }
 
         indexReader.close();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("..............");
+            }
+        }).start();
+
     }
+
+
 
 }
