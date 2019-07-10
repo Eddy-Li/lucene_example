@@ -109,6 +109,3 @@ indices.recovery.max_size_per_sec: 0
 indices.recovery.concurrent_streams: 5
 设置这个参数来限制从其它分片恢复数据时最大同时打开并发流的个数，默认为5。
 
-
-
-
