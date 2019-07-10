@@ -113,14 +113,6 @@ public class Main {
         }
 
         indexReader.close();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("..............");
-            }
-        }).start();
-
     }
 
 
