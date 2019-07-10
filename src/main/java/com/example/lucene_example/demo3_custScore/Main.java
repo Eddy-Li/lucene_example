@@ -115,6 +115,4 @@ public class Main {
         indexReader.close();
     }
 
-
-
 }
