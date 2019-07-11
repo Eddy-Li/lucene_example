@@ -91,14 +91,21 @@ http.enabled: false
 gateway.type: local
 gateway的类型，默认为local即为本地文件系统，可以设置为本地文件系统，分布式文件系统，Hadoop的HDFS，和amazon的s3服务器，其它文件系统的设置方法下次再详细说。
 
-gateway.recover_after_nodes: 1
-设置集群中N个节点启动时进行数据恢复，默认为1。
+################################recovery################################
+gateway.expected_nodes: 2
+设置这个集群中节点的数量(包含master_nodes+data_nodes)，默认为2，一旦这N个节点启动，就会立即进行数据恢复。
+gateway.expected_master_nodes
+gateway.expected_data_nodes
 
 gateway.recover_after_time: 5m
-设置初始化数据恢复进程的超时时间，默认是5分钟。
+在期待的节点数条件满足之前, recovery过程会等待gateway.recover_after_time (默认5分钟) 这么长时间，
+一旦等待超时，则会根据以下条件判断是否启动:
 
-gateway.expected_nodes: 2
-设置这个集群中节点的数量，默认为2，一旦这N个节点启动，就会立即进行数据恢复。
+gateway.recover_after_nodes: 1
+设置集群中N个节点启动时进行数据恢复，默认为1。
+gateway.recover_after_master_nodes
+gateway.recover_after_data_nodes
+################################recovery################################
 
 cluster.routing.allocation.node_initial_primaries_recoveries: 4
 初始化数据恢复时，并发恢复线程的个数，默认为4。
@@ -111,4 +118,8 @@ indices.recovery.max_size_per_sec: 0
 
 indices.recovery.concurrent_streams: 5
 设置这个参数来限制从其它分片恢复数据时最大同时打开并发流的个数，默认为5。
+
+
+recovery:
+https://blog.csdn.net/u012450329/article/details/52881045  Elasticsearch Recovery详解
 
