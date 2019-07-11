@@ -22,7 +22,7 @@
 		#POST http://localhost:9200/索引名称/类型名称/文档id/_update?retry_on_conflict=3
 		POST http://localhost:9200/索引名称/类型名称/文档id/_update
 		{
-			#亚欧"doc"
+			#要有"doc"
 			"doc":{
 				#要更新的字段,如下将name字段更新为eddy,age字段更新为20,增加一个addr字段
 				"name":"eddy"，

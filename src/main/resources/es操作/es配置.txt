@@ -42,7 +42,10 @@ node.max_local_storage_nodes: 1
 
 
 #设置这个参数来保证集群中的节点可以知道其它N个有master资格的节点。默认为1，对于大的集群来说，可以设置大一点的值（2-4）
-#具有master资格的nodes/2 + 1
+#具有master资格的nodes/2 + 1，即discovery.zen.ping.unicast.hosts/2+1
+#这个参数控制的是，一个节点需要看到的具有master节点资格的最小数量，然后才能在集群中做操作。
+#官方的推荐值是(N/2)+1，其中N是具有master资格的节点的数量（我们的情况是3，因此这个参数设置为2，
+#但对于只有2个节点的情况，设置为2就有些问题了，一个节点DOWN掉后，你肯定连不上2台服务器了，这点需要注意）。
 discovery.zen.minimum_master_nodes: 1
 #设置集群中自动发现其它节点时ping连接超时时间，默认为3秒，对于比较差的网络环境可以高点的值来防止自动发现时出错。
 discovery.zen.ping.timeout: 3s
