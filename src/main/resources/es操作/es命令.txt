@@ -1,0 +1,25 @@
+1.启动es
+    ./bin/elasticsearch
+2.在后台启动es
+      ./bin/elasticsearch -d
+3.关闭es
+    先关闭集群shard allocation(分片分配)
+    PUT _cluster/settings
+    {
+      "persistent": {
+        "cluster.routing.allocation.enable":"none"  //"all","none","primaries"
+      }
+    }
+    或如下：
+    PUT _cluster/settings
+    {
+      "persistent": {
+        "cluster":{
+          "routing": {
+            "allocation.enable": "none"
+          }
+        }
+      }
+    }
+    然后ctr+c或者kill -9 pid
+4.

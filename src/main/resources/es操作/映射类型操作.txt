@@ -47,3 +47,39 @@
 	GET http://localhost:9200/_all/_mapping/mappingName1,mappingName2
 	#指定的一些索引
 	GET http://localhost:9200/indexName1,indexName2/_mapping/mappingName1,mappingName2
+
+四、参数：https://blog.csdn.net/wwwdc1012/article/details/81749187
+1."type"：数据类型
+字符串 - text
+    用于全文索引，该类型的字段将通过分词器进行分词，最终用于构建索引
+字符串 - keyword
+    不分词，只能搜索该字段的完整的值，只用于 filtering
+数值型
+    long：有符号64-bit integer：-2^63 ~ 2^63 - 1
+    integer：有符号32-bit integer，-2^31 ~ 2^31 - 1
+    short：有符号16-bit integer，-32768 ~ 32767
+    byte： 有符号8-bit integer，-128 ~ 127
+    double：64-bit IEEE 754 浮点数
+    float：32-bit IEEE 754 浮点数
+    half_float：16-bit IEEE 754 浮点数
+    scaled_float
+布尔 - boolean
+    值：false, “false”, true, “true”
+日期 - date
+    由于Json没有date类型，所以es通过识别字符串是否符合format定义的格式来判断是否为date类型
+    format默认为：strict_date_optional_time||epoch_millis format
+二进制 - binary
+    该类型的字段把值当做经过 base64 编码的字符串，默认不存储，且不可搜索
+范围类型
+    范围类型表示值是一个范围，而不是一个具体的值
+    譬如 age 的类型是 integer_range，那么值可以是 {“gte” : 10, “lte” : 20}；搜索 “term” : {“age”: 15} 可以搜索该值；搜索 “range”: {“age”: {“gte”:11, “lte”: 15}} 也可以搜索到
+    range参数 relation 设置匹配模式
+        INTERSECTS ：默认的匹配模式，只要搜索值与字段值有交集即可匹配到
+        WITHIN：字段值需要完全包含在搜索值之内，也就是字段值是搜索值的子集才能匹配
+        CONTAINS：与WITHIN相反，只搜索字段值包含搜索值的文档
+    integer_range
+    float_range
+    long_range
+    double_range
+    date_range：64-bit 无符号整数，时间戳（单位：毫秒）
+    ip_range：IPV4 或 IPV6 格式的字符串
