@@ -6,14 +6,14 @@
     先关闭集群shard allocation(分片分配)
     PUT _cluster/settings
     {
-      "persistent": {
+      "transient": {     //"persistent":持久化设置 "transient":临时设置
         "cluster.routing.allocation.enable":"none"  //"all","none","primaries"
       }
     }
     或如下：
     PUT _cluster/settings
     {
-      "persistent": {
+      "transient": {
         "cluster":{
           "routing": {
             "allocation.enable": "none"
@@ -23,3 +23,4 @@
     }
     然后ctr+c或者kill -9 pid
 4.
+
