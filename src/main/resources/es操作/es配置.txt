@@ -57,8 +57,20 @@ discovery.zen.ping.unicast.hosts: ["host1", "host2:port", "host3[portX-portY]"]
 
 #禁止自动创建索引
 action.auto_create_index: false
+#5.x版本后不能配置在yml文件中，需要如下命令
+PUT _cluster/settings
+{
+    "persistent": {
+        "action.auto_create_index": "false"
+    }
+}
 #禁止自动创建映射
 index.mapper.dynamic: false
+#5.x版本后不能配置在yml文件中，需要如下命令
+PUT indexName/_settings
+{
+    "index.mapper.dynamic":false
+}
 
 
 =================================================================================================

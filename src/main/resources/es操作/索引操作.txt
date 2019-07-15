@@ -26,6 +26,10 @@
 			#类型设置
 			"mappings":{
 				"mappingname":{
+
+				    #禁用动态添加字段，如果有陌生字段会报异常
+				    "dynamic": "strict",
+
 					#禁用_source字段，即所有字段禁止存储
 					"_source": {"enabled": false},
 					"properties":{
