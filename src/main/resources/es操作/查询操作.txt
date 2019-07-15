@@ -156,3 +156,18 @@ POST test/student/_search
     }
   }
 }
+
+11.constant_score：用于只有filter，而没有query的情况下
+{
+  "query": {
+    "constant_score": {
+      "filter": {
+        "term": {
+          "FIELD": "VALUE"
+        }
+      }
+    }
+  }
+}
+
+聚合查询
