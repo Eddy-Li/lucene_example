@@ -100,3 +100,59 @@ POST test/student/_search
     }
   }
 }
+
+7.range:范围查询
+{
+  "query": {
+    "range": {
+      "fieldName": {
+        "gte": 10,
+        "lte": 20
+        //"lt": 20
+        //"gt": 10
+      }
+    }
+  }
+}
+
+8.wildcard:通配符查询， *：任意个字符，包含0个字符， ?:一个字符
+{
+  "query": {
+    "wildcard": {  //不会对"str"进行分词，查询"fieldName"字段中含有"str"词项的文档
+      "fieldName": {
+        "value": "str"
+      }
+    }
+  }
+}
+
+9.正则表达式查询
+{
+    'query':{
+        'regex':{
+            'title':{
+                'value':'cr.m[ae]',
+                'boost':10.0
+            }
+        }
+    }
+}
+
+10.bool
+{
+  "query": {
+    "bool": {
+      "filter": {   //必须全部满足
+      },
+      "must": [     //必须全部满足
+        {}
+      ],
+      "must_not": [     //必须全部不满足
+        {}
+      ],
+      "should": [       //可以满足0个或多个，满足的越多评分越高
+        {}
+      ]
+    }
+  }
+}
