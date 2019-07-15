@@ -33,11 +33,70 @@ POST test/student/_search
   "size": 3,
   
   #过滤，默认true，即是否显示文档的所有字段
-  "_source": false
+  "_source": false,
   #或者如下：includes包含显示哪些字段，excludes排除哪些字段
   #"_source": {
   #  "includes": ["id","name"],
   #  "excludes": ["age"]
   #}
-  
+
+  #返回版本号，默认为true
+  "version": true
+}
+
+1.term
+{
+  "query": {
+    "term": {   //不会对"str"进行分词，查询"fieldName"字段中含有"str"词项的文档
+      "fieldName":"str"
+    }
+  }
+}
+
+2.terms
+{
+  "query": {
+    "terms": {  //不会对"str1""str2","str3"...,进行分词，查询"fieldName"字段中含有"str1"或"str2"或"str3"...词项的文档
+      "fieldName": [
+        "str1",
+        "str2",
+        "str3",
+        ...
+      ]
+    }
+  }
+}
+
+3.match_all：返回所有文档
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+4.match
+{
+  "query": {
+    "match": {      //会对"str"进行分词，查询"fieldName"字段中含有"str"分词后一个或多个词项的文档
+      "fieldName": "str"
+    }
+  }
+}
+
+5.match_phrase：短语查询
+{
+  "query": {
+    "match_phrase": {  //会对"str"进行分词，查询"fieldName"字段中含有"str"分词后所有词项的文档，且每一个词项的相对位置不变，即完全匹配"str"
+      "fieldName": "str"
+    }
+  }
+}
+
+6.match_phrase_prefix:前缀匹配查询
+{
+  "query": {
+    "match_phrase_prefix": { //查询"fieldName"字段中以"str"开头的文档（会对"str"进行分词）
+      "fieldName": "str"
+    }
+  }
 }

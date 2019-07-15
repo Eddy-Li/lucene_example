@@ -55,7 +55,13 @@
 							"boost": 10，
 							
 							#是否包含在_all字段中，当“index”为true时默认值为true，否则为false
-							include_in_all:
+							include_in_all:true,
+
+							#是否开启doc_values
+							#Doc Values 默认对所有字段启用，除了 analyzed strings。
+							#也就是说所有的数字、地理坐标、日期、IP 和不分析（ `not_analyzed ）字符类型都会默认开启。
+                            #analyzed strings 暂时还不能使用 Doc Values。文本经过分析流程生成很多 `Token`，使得Doc Values 不能高效运行
+							"doc_values":true
 						},
 						...
 					}
