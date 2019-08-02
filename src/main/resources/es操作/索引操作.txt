@@ -52,7 +52,9 @@
 							#搜索分词器
 							"search_analyzer":"",
 							
-							#该字段是否被存储(是否可以显示)(true/false)
+							#该字段是否单独存储(是否可以显示)(true/false)
+							#与"_source": {"enabled": false} 没有关系，"store"不影响"_source"
+							#默认false,一般这个不配置,配了会影响性能
 							"store": true，
 							
 							#权重
